@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 var env = require('dotenv')
 var exphbs = require('express-handlebars')
  
- 
+const PORT = process.env.PORT || 8080;
 //For BodyParser
 app.use(bodyParser.urlencoded({
     extended: true
@@ -66,11 +66,10 @@ models.sequelize.sync().then(function() {
 });
  
  
-app.listen(5000, function(err) {
- 
-    if (!err)
- 
-        console.log("Site is live");
-         
-    else console.log(err)
-});
+app.listen(PORT, () => {
+    console.log(
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      PORT,
+      PORT
+    );
+  });
