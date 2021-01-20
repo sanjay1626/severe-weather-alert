@@ -1,0 +1,48 @@
+{
+  "name": "severe-weather-alert",
+  "version": "1.0.0",
+  "description": "Alerts user on severe weather and earthquakes",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run lint",
+    "start": "node server.js",
+    "lint": "eslint --quiet .",
+    "fix": "eslint --fix .",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjay1626/severe-weather-alert.git"
+  },
+  "keywords": [],
+  "author": "Sanjay Gonsalves",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "emailjs-com": "^2.6.4",
+    "express": "^4.17.0",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.16.1",
+    "mysql2": "^1.6.5",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "sequelize": "^5.8.6",
+    "usgs-earthquake-api": "^1.0.32"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "mocha": "^5.2.0",
+    "prettier": "^1.13.7"
+  },
+  "bugs": {
+    "url": "https://github.com/sanjay1626/severe-weather-alert/issues"
+  },
+  "homepage": "https://github.com/sanjay1626/severe-weather-alert#readme"
+}
