@@ -1,28 +1,39 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-4 col-md-offset-4 bg-danger center-column transparent ", style="border-radius:10px; margin-top:40px; text-align: center;">
-        <h2>Sign Up Form</h2>
-        <form class="signup">
+      <div class="col-md-4 col-md-offset-4 bg-danger center-column transparent ", style="border-radius:10px; margin-top:40px;">
+        <h2 style="text-align: center;">Sign Up Form</h2>
+      <form class="login">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="email-input" placeholder="Email">
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+           <div class="form-group">
+            <label for="exampleInputFirstname1">Firstname</label>
             <input type="password" class="form-control" id="password-input" placeholder="Password">
           </div>
-          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+          <div class="form-group">
+            <label for="exampleInputLastname1">Lastname</label>
+            <input type="password" class="form-control" id="password-input" placeholder="Password">
+          </div>
+           <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password-input" placeholder="Password">
+
+            <div style="display: none" id="alert" class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
-          </div>
+          </div><br>
           <button type="submit" class="btn btn-default">Sign Up</button>
-        </form>
-        <br />
-        <p>Or log in <a href="/signin">here</a></p>
+          </form>
+              <br />
+        <p>Or log in <a href="/login">here</a></p>
+          </div>
+         
+       
+        
       </div>
     </div>
-  </div>
+  
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
