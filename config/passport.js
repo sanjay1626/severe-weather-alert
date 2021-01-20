@@ -1,12 +1,12 @@
 var bCrypt = require('bcryptjs');
- 
- 
+var passport = require("passport");
+var LocalStrategy = require('passport-local').Strategy;
 module.exports = function(passport, user) {
  
  
     var User = user;
  
-    var LocalStrategy = require('passport-local').Strategy;
+   
  
  
     passport.use('local-signup', new LocalStrategy(
@@ -91,3 +91,4 @@ module.exports = function(passport, user) {
     ));
  
 }
+module.exports = passport;
