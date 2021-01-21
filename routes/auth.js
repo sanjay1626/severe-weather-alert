@@ -9,40 +9,23 @@ module.exports = function(app) {
  
     app.get('/signin', authController.signin);
  
-    app.get('/logout',authController.logout);
-
-
-   //app.post("/signup", passport.authenticate("local-signup"), function(req, res) {
-   //    successRedirect: '/dashboard';
- ////
-   //    failureRedirect: '/signup'
-   //   res.json(req.user);
-   //   
-   //});
- app.post('/signup', passport.authenticate('local-signup', {
-   successRedirect: '/dashboard',
-   failureRedirect: '/signup'
- }
- ));
-
-app.post('/signin', passport.authenticate('local-signin', {
-        successRedirect: '/dashboard',
- 
-        failureRedirect: '/signin'
-    }
- 
-));
-   
-    app.get('/dashboard',isLoggedIn, authController.dashboard);
-    //app.get('/logout',authController.logout);
     
+  app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/signup'
+  }
+  ));
+  app.get('/dashboard',isLoggedIn, authController.dashboard);
+  
+  app.get('/logout',authController.logout);
 
+  app.post('/signin', passport.authenticate('local-signin', {
+          successRedirect: '/dashboard',
+          failureRedirect: '/signin'
+      }
+  ));
 
-
-
-
-   
-    
+//Protect Route
   function isLoggedIn(req, res, next) {
  
     if (req.isAuthenticated())
@@ -51,5 +34,6 @@ app.post('/signin', passport.authenticate('local-signin', {
          
     res.redirect('/signin');
  
-}
-}
+    }
+
+};
