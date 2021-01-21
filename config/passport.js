@@ -1,10 +1,14 @@
+//load bcrypt
 var bCrypt = require('bcryptjs');
-var passport = require("passport");
-var LocalStrategy = require('passport-local').Strategy;
+var db = require("../models");
+ 
 module.exports = function(passport, user) {
  
  
     var User = user;
+ 
+    var LocalStrategy = require('passport-local').Strategy;
+ 
  
     passport.use('local-signup', new LocalStrategy(
  
@@ -28,9 +32,8 @@ module.exports = function(passport, user) {
  
             };
  
- 
- 
-            User.findOne({
+
+           User.findOne({
                 where: {
                     email: email
                 }
@@ -86,74 +89,31 @@ module.exports = function(passport, user) {
         }
  
     ));
+    //serialize
+passport.serializeUser(function(user, done) {
+ 
+    done(null, user.id);
+ 
+});
 
-    //LOCAL SIGNIN
-passport.use('local-signin', new LocalStrategy(
+// deserialize user 
+passport.deserializeUser((id, done) => {
  
-    {
+    User.findById(id).then(function(user) {
  
-        // by default, local strategy uses username and password, we will override with email
+        if (user) {
  
-        usernameField: 'email',
+            done(null, user.get());
  
-        passwordField: 'password',
+        } else {
  
-        passReqToCallback: true // allows us to pass back the entire request to the callback
- 
-    },
- 
- 
-    function(req, email, password, done) {
- 
-        var User = user;
- 
-        var isValidPassword = function(userpass, password) {
- 
-            return bCrypt.compareSync(password, userpass);
+            done(user.errors, null);
  
         }
  
-        User.findOne({
-            where: {
-                email: email
-            }
-        }).then(function(user) {
+    });
  
-            if (!user) {
+})
  
-                return done(null, false, {
-                    message: 'Email does not exist'
-                });
- 
-            }
- 
-            if (!isValidPassword(user.password, password)) {
- 
-                return done(null, false, {
-                    message: 'Incorrect password.'
-                });
- 
-            }
- 
- 
-            var userinfo = user.get();
-            return done(null, userinfo);
- 
- 
-        }).catch(function(err) {
- 
-            console.log("Error:", err);
- 
-            return done(null, false, {
-                message: 'Something went wrong with your Signin'
-            });
- 
-        });
- 
- 
-    }
- 
-));
- 
-}
-module.exports = passport;
+};
+

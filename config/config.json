@@ -2,14 +2,14 @@
     "development": {
       "username": "root",
       "password": "Stormerdomain012$",
-      "database": "test_db",
+      "database": "swa_db",
       "host": "127.0.0.1",
       "dialect": "mysql"
     },
     "test": {
       "username": "root",
       "password": "Stormerdomain012$",
-      "database": "test_db",
+      "database": "swa_db",
       "host": "127.0.0.1",
       "dialect": "mysql"
     },

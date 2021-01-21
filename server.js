@@ -5,7 +5,7 @@ var session = require('express-session')
 var bodyParser = require('body-parser')
 var env = require('dotenv')
 var exphbs = require('express-handlebars')
- 
+ var db = require("./models")
 const PORT = process.env.PORT || 5000;
 //For BodyParser
 app.use(bodyParser.urlencoded({
@@ -22,8 +22,13 @@ app.use(session({
 })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+
  
- 
+//load passport strategies
+//require('./config/passport.js')
+ require('./config/passport.js')(passport, db.user );
+
+
 //For Handlebars
 app.set('views', './views')
 app.engine('hbs', exphbs({
@@ -44,12 +49,7 @@ var models = require("./models");
  
 //Routes
  
-var authRoute = require('./routes/auth.js')(app);
- 
- 
-//load passport strategies
- 
-require('./config/passport.js');
+var authRoute = require('./routes/auth.js')(app,passport);
  
  
 //Sync Database
