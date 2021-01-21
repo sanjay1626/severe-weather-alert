@@ -23,7 +23,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
- 
+ //link js files to eliminate 404 err code
+ app.use(express.static('views'))
+
 //load passport strategies
 //require('./config/passport.js')
  require('./config/passport.js')(passport, db.user );
