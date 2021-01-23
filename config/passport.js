@@ -1,8 +1,9 @@
 //load bcrypt
 var bCrypt = require('bcryptjs');
 var db = require("../models");
- 
+//var passport = require("passport");
 module.exports = function(passport, user) {
+    
     var User = user;
     var LocalStrategy = require('passport-local').Strategy;
     passport.use('local-signup', new LocalStrategy(
@@ -53,7 +54,7 @@ module.exports = function(passport, user) {
     });
     // deserialize user 
     passport.deserializeUser((id, done) => {
-        User.findById(id).then(function(user) {
+        db.User.findById(id).then(function(user) {
             if (user) {
                 done(null, user.get());
             } else {
@@ -130,4 +131,4 @@ passport.use('local-signin', new LocalStrategy(
 ))
 
 };
-    
+

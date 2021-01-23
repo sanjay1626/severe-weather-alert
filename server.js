@@ -42,7 +42,7 @@ app.set('view engine', '.hbs');
  
 app.get('/', function(req, res) {
  res.redirect('/signin')
-   // res.send('Welcome to Passport with Sequelize');
+// res.send('Welcome to Passport with Sequelize');
  
 });
  
@@ -51,7 +51,7 @@ var models = require("./models");
  
 //Routes
  
-var authRoute = require('./routes/auth.js')(app,passport);
+require('./routes/auth.js')(app,passport);
  
  
 //Sync Database
@@ -60,6 +60,13 @@ models.sequelize.sync().then(function() {
  
     console.log('Nice! Database looks fine')
  
+    app.listen(PORT, () => {
+        console.log(
+          "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+          PORT,
+          PORT
+        );
+      });
  
 }).catch(function(err) {
  
@@ -68,10 +75,3 @@ models.sequelize.sync().then(function() {
 });
  
  
-app.listen(PORT, () => {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
